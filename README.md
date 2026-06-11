@@ -4,9 +4,6 @@ A lightweight web UI for previewing metal finishes on a part before committing t
 fabrication. Start from a CAD line drawing, then apply a fully rendered die-cast
 finish from a dropdown, or compare two finishes side by side.
 
-Finish library is based on
-[Dynacast surface finishes & plating](https://www.dynacast.com/additional-capabilities/surface-finishes-and-plating).
-
 ## What's here
 
 - `index.html` — the entire app, self-contained. All preview images are embedded as
@@ -54,7 +51,7 @@ After pushing this repo to GitHub (see below), enable Pages:
 - Finish swatches as clickable chips; dropdown grouped by family
   (bright / satin / black / colored).
 - Real upload → finish-render pipeline via a 3D renderer (Three.js) or Adobe Firefly.
-- Expand from 8 finishes toward Dynacast's full ~40-finish menu.
+- Expand from 8 finishes toward the full surface-finish menu.
 
 ## Notes
 
