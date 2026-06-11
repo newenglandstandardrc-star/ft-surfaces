@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dynacast — Surface Finish Sampler</title>
+<title>Surface Finish Sampler</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -86,10 +86,33 @@
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#14171A;display:flex;align-items:center;justify-content:center;font-family:'Inter',system-ui,sans-serif;padding:20px;">
+  <div style="background:#fff;border-radius:14px;padding:32px 30px;width:320px;max-width:90vw;box-shadow:0 10px 40px rgba(0,0,0,.35);text-align:center;">
+    <div style="font-weight:700;letter-spacing:.14em;font-size:16px;color:#14171A;margin-bottom:4px;">FINISH SAMPLER<span style="color:#2F6BE4;">.</span></div>
+    <div style="font-size:13px;color:#5B636C;margin-bottom:20px;">Enter passcode to continue</div>
+    <input id="gateInput" type="password" placeholder="Passcode" autocomplete="off" style="width:100%;box-sizing:border-box;font-size:15px;padding:10px 12px;border:1px solid #E3E7EC;border-radius:8px;outline:none;margin-bottom:10px;" />
+    <button id="gateBtn" style="width:100%;font-size:14px;font-weight:600;color:#fff;background:#2F6BE4;border:none;border-radius:8px;padding:11px;cursor:pointer;">Enter</button>
+    <div id="gateErr" style="display:none;color:#cc3a21;font-size:12.5px;margin-top:10px;">Incorrect passcode</div>
+  </div>
+</div>
+<script>
+(function(){
+  var PASSCODE = "surfaces2026";
+  var gate=document.getElementById('gate'), inp=document.getElementById('gateInput'),
+      btn=document.getElementById('gateBtn'), err=document.getElementById('gateErr');
+  function tryUnlock(){
+    if(inp.value === PASSCODE){ gate.parentNode.removeChild(gate); }
+    else { err.style.display='block'; inp.value=''; inp.focus(); }
+  }
+  btn.addEventListener('click', tryUnlock);
+  inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); tryUnlock(); } });
+  window.addEventListener('load', function(){ inp.focus(); });
+})();
+</script>
 <header><div class="wrap bar">
   <div class="brand">
-    <span class="mark">DYNACAST<span class="dot">.</span></span>
-    <span class="tag">Surface Finish Sampler</span>
+    <span class="mark">FINISH SAMPLER<span class="dot">.</span></span>
+    <span class="tag">Preview</span>
   </div>
   <label class="upload">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>
@@ -128,7 +151,7 @@
 </main>
 
 <footer><div class="wrap foot">
-  <span>Finish library based on <a href="https://www.dynacast.com/additional-capabilities/surface-finishes-and-plating">Dynacast surface finishes &amp; plating</a>.</span>
+  <span>Finish previews for evaluation before fabrication.</span>
   <span class="pill">V1 PREVIEW</span>
 </div></footer>
 
